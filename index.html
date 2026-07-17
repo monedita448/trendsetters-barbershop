@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trendsetters Barber Shop Inc. | West Palm Beach, FL — Est. 2010</title>
+<meta name="description" content="Trendsetters Barber Shop Inc. — West Palm Beach's barbershop since 2010. Haircuts, fades, beard trims & kids cuts on Okeechobee Blvd.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#16302A;
+    --forest-deep:#0E1F1B;
+    --brass:#C9A227;
+    --brass-bright:#E4C458;
+    --cream:#F3EEDE;
+    --barber-red:#A83232;
+    --sage:#9FB3A8;
+    --line: rgba(243,238,222,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--forest);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    line-height:1.02;
+  }
+  a{color:inherit;}
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-size:12px;
+  }
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+
+  /* --- Barber pole stripe signature --- */
+  .stripe{
+    background:repeating-linear-gradient(
+      -45deg,
+      var(--barber-red) 0px, var(--barber-red) 14px,
+      var(--cream) 14px, var(--cream) 28px,
+      var(--forest-deep) 28px, var(--forest-deep) 42px
+    );
+  }
+
+  /* --- Nav --- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(14,31,27,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:1140px; margin:0 auto;
+  }
+  .logo{font-family:'Fraunces',serif; font-weight:700; font-size:22px; letter-spacing:0.01em;}
+  .logo span{color:var(--brass-bright);}
+  .navlinks{display:flex; gap:32px; align-items:center;}
+  .navlinks a{
+    font-family:'IBM Plex Mono',monospace; font-size:12px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    text-decoration:none; color:var(--sage);
+    transition:color .2s;
+  }
+  .navlinks a:hover{color:var(--brass-bright);}
+  .call-btn{
+    background:var(--brass); color:var(--forest-deep);
+    font-family:'IBM Plex Mono',monospace; font-weight:500;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:10px 18px; border-radius:2px; text-decoration:none;
+    white-space:nowrap;
+  }
+  .call-btn:hover{background:var(--brass-bright);}
+  @media (max-width:820px){ .navlinks a:not(.call-btn){display:none;} }
+
+  /* --- Hero --- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex; align-items:flex-end;
+    background:
+      linear-gradient(180deg, rgba(14,31,27,0.55) 0%, rgba(14,31,27,0.35) 40%, rgba(14,31,27,0.95) 100%),
+      url('./trendsetters-hero.png') center 25%/cover no-repeat;
+  }
+  .hero-inner{
+    width:100%; max-width:1140px; margin:0 auto;
+    padding:0 24px 72px; position:relative;
+  }
+  .hero-eyebrow{
+    display:flex; align-items:center; gap:12px; margin-bottom:22px;
+  }
+  .hero-eyebrow .dash{width:36px; height:2px; background:var(--brass);}
+  .hero h1{
+    font-size:clamp(48px, 9vw, 108px);
+    color:var(--cream);
+    text-transform:uppercase;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--brass-bright); font-weight:500;
+  }
+  .hero-sub{
+    max-width:520px; margin-top:20px;
+    font-size:18px; color:var(--sage); line-height:1.5;
+  }
+  .hero-actions{display:flex; gap:16px; margin-top:36px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--brass); color:var(--forest-deep);
+    padding:16px 28px; text-decoration:none; border-radius:2px;
+    font-family:'IBM Plex Mono',monospace; font-size:13px;
+    letter-spacing:0.08em; text-transform:uppercase; font-weight:500;
+  }
+  .btn-primary:hover{background:var(--brass-bright);}
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--cream);
+    padding:16px 28px; text-decoration:none; border-radius:2px;
+    font-family:'IBM Plex Mono',monospace; font-size:13px;
+    letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .btn-ghost:hover{border-color:var(--brass);}
+  .stripe-strip{height:8px;}
+
+  /* --- Stat bar --- */
+  .stats{
+    display:flex; flex-wrap:wrap; gap:40px;
+    padding:36px 0; border-bottom:1px solid var(--line);
+  }
+  .stat b{
+    display:block; font-family:'Fraunces',serif; font-size:34px; color:var(--brass-bright); font-weight:600;
+  }
+  .stat span{color:var(--sage); font-size:13px;}
+
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .mono{color:var(--brass); margin-bottom:14px; display:block;}
+  .section-head h2{font-size:clamp(32px,4vw,48px);}
+  .section-head p{color:var(--sage); margin-top:16px; font-size:16px; line-height:1.6;}
+
+  /* --- Services --- */
+  .services{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .service{
+    background:var(--forest); padding:32px 24px; min-height:220px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .service .num{font-family:'IBM Plex Mono',monospace; color:var(--barber-red); font-size:13px;}
+  .service h3{font-size:22px; margin-top:28px; color:var(--cream);}
+  .service p{color:var(--sage); font-size:14px; margin-top:10px; line-height:1.5;}
+  @media (max-width:900px){ .services{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .services{grid-template-columns:1fr;} }
+
+  /* --- Barbers --- */
+  .barbers-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+  }
+  .barber-card{
+    border:1px solid var(--line); padding:24px 18px; text-align:center;
+    transition:border-color .2s;
+  }
+  .barber-card:hover{border-color:var(--brass);}
+  .barber-initial{
+    width:56px; height:56px; border-radius:50%;
+    background:var(--forest-deep); border:1px solid var(--brass);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:22px; color:var(--brass-bright);
+    margin:0 auto 16px;
+  }
+  .barber-card h3{font-size:18px; color:var(--cream);}
+  .barber-card p{color:var(--sage); font-size:13px; margin-top:8px; line-height:1.5;}
+  @media (max-width:900px){ .barbers-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .barbers-grid{grid-template-columns:1fr;} }
+
+  /* --- Gallery --- */
+  .gallery{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:8px;
+  }
+  .gallery img{
+    width:100%; height:200px; object-fit:cover; display:block;
+    filter:saturate(0.95);
+  }
+  @media (max-width:700px){ .gallery{grid-template-columns:repeat(2,1fr);} }
+
+  /* --- Testimonials --- */
+  .testi-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .testi-card{
+    background:var(--forest-deep); border:1px solid var(--line);
+    padding:32px 28px; display:flex; flex-direction:column;
+  }
+  .testi-stars{color:var(--brass); font-size:14px; letter-spacing:2px; margin-bottom:18px;}
+  .testi-card p{
+    font-family:'Fraunces',serif; font-size:19px; font-weight:400;
+    line-height:1.45; color:var(--cream); flex:1;
+  }
+  .testi-card cite{
+    display:block; margin-top:22px; font-style:normal;
+    font-family:'IBM Plex Mono',monospace; font-size:12px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--sage);
+  }
+  @media (max-width:900px){ .testi-grid{grid-template-columns:1fr;} }
+
+  /* --- Visit / hours / map --- */
+  .visit{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
+  }
+  .hours-table{width:100%; border-collapse:collapse; margin-top:24px;}
+  .hours-table td{
+    padding:10px 0; border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .hours-table td:first-child{color:var(--sage);}
+  .hours-table td:last-child{text-align:right; font-family:'IBM Plex Mono',monospace;}
+  .hours-table tr.today td{color:var(--brass-bright);}
+  .map-frame{
+    border:0; width:100%; height:380px; filter:grayscale(0.3) invert(0.92) contrast(0.9);
+    border:1px solid var(--line);
+  }
+  .contact-line{display:flex; gap:14px; align-items:center; margin-top:14px; font-size:15px;}
+  .contact-line .mono{color:var(--brass); min-width:70px;}
+  @media (max-width:820px){ .visit{grid-template-columns:1fr;} }
+
+  /* --- CTA band --- */
+  .cta-band{
+    background:var(--forest-deep); text-align:center; padding:96px 24px;
+  }
+  .cta-band h2{font-size:clamp(30px,5vw,52px); max-width:680px; margin:0 auto;}
+  .cta-band p{color:var(--sage); margin-top:18px;}
+  .cta-band .btn-primary{margin-top:32px; display:inline-block;}
+
+  footer{
+    border-top:1px solid var(--line); padding:40px 0 32px;
+  }
+  .foot-row{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;
+    font-size:13px; color:var(--sage);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">TRENDSETTERS<span>.</span></div>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#barbers">Barbers</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+      <a class="call-btn" href="tel:+15616295737">(561) 629-5737</a>
+    </div>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="dash"></span>
+      <span class="mono" style="color:var(--brass-bright)">West Palm Beach, FL · Est. 2010</span>
+    </div>
+    <h1>Trend&shy;setters<br><em>Barber Shop</em></h1>
+    <p class="hero-sub">Sharp, precise cuts and a shop that treats every chair like a regular's chair. Sixteen years on Okeechobee Blvd — walk-ins welcome, regulars remembered.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="tel:+15616295737">Call to Book — (561) 629-5737</a>
+      <a class="btn-ghost" href="#visit">Get Directions</a>
+    </div>
+  </div>
+</div>
+<div class="stripe stripe-strip"></div>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><b>2010</b><span>Year Founded</span></div>
+    <div class="stat"><b>16</b><span>Years in West Palm Beach</span></div>
+    <div class="stat"><b>7</b><span>Days a Week Open</span></div>
+    <div class="stat"><b>5★</b><span>Rated by Regulars</span></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">What We Do</span>
+      <h2>The Menu</h2>
+      <p>No frills, no upsell — just clean lines and a shop that knows what it's doing.</p>
+    </div>
+    <div class="services">
+      <div class="service">
+        <span class="num">01</span>
+        <div><h3>Men's Haircut</h3><p>Classic and modern cuts, tailored to how you actually wear your hair.</p></div>
+      </div>
+      <div class="service">
+        <span class="num">02</span>
+        <div><h3>Fades &amp; Line-Ups</h3><p>Crisp fades and sharp edges, dialed in to the skin.</p></div>
+      </div>
+      <div class="service">
+        <span class="num">03</span>
+        <div><h3>Beard Trim</h3><p>Shaped and lined to match the cut, not just trimmed down.</p></div>
+      </div>
+      <div class="service">
+        <span class="num">04</span>
+        <div><h3>Kids Cuts</h3><p>Patient, family-friendly cuts for the youngest regulars in the chair.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="barbers" style="background:var(--forest-deep)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Behind the Chair</span>
+      <h2>Meet the Barbers</h2>
+      <p>The names customers ask for by name.</p>
+    </div>
+    <div class="barbers-grid">
+      <div class="barber-card">
+        <div class="barber-initial">J</div>
+        <h3>Dr. Jay</h3>
+        <p>Owner. Reliable, skilled, and always dialed in on the details.</p>
+      </div>
+      <div class="barber-card">
+        <div class="barber-initial">R</div>
+        <h3>Rodney</h3>
+        <p>Experienced hand, easygoing chair — a shop favorite.</p>
+      </div>
+      <div class="barber-card">
+        <div class="barber-initial">D</div>
+        <h3>Daj</h3>
+        <p>Loctician. Haircuts, hair color, loc retwist, loc repair, loc combining.</p>
+      </div>
+      <div class="barber-card">
+        <div class="barber-initial">J</div>
+        <h3>Jah</h3>
+        <p>Cool, laid back, great service.</p>
+      </div>
+      <div class="barber-card">
+        <div class="barber-initial">F</div>
+        <h3>Frank</h3>
+        <p>Great barber, always on time, and reliable.</p>
+      </div>
+      <div class="barber-card">
+        <div class="barber-initial">B</div>
+        <h3>Bobby</h3>
+        <p>Attention to detail, personable, great cuts.</p>
+      </div>
+      <div class="barber-card">
+        <div class="barber-initial">B</div>
+        <h3>Biggz</h3>
+        <p>Impeccable. Dependable. Enjoyable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">The Shop</span>
+      <h2>A Look Inside</h2>
+    </div>
+  </div>
+  <div class="gallery">
+    <img src="https://lh5.googleusercontent.com/p/AF1QipPUZhyXpuphZpqzBZWPkSFlaha7Cl0i8k827J_Q" alt="Inside Trendsetters Barber Shop" loading="lazy">
+    <img src="https://lh5.googleusercontent.com/p/AF1QipOSHsYmNeyaNKqgijb7y6GlmjR5YNMNAf3PYqVD" alt="Trendsetters Barber Shop interior" loading="lazy">
+    <img src="https://lh5.googleusercontent.com/p/AF1QipOipkzDlpaSEOZI00VIp4k3FHdbV8irCB04XhjT" alt="Trendsetters Barber Shop chairs" loading="lazy">
+    <img src="https://lh5.googleusercontent.com/p/AF1QipPtV1oOEUMYT04fyOJItWLawqECDKhCfH3IY22g" alt="Trendsetters Barber Shop detail" loading="lazy">
+  </div>
+</section>
+
+<section id="reviews" style="background:var(--forest-deep)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Word on the Street</span>
+      <h2>What Regulars Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Among the best in Palm Beach. Great environment, experienced barbers, and rates that stay reasonable."</p>
+        <cite>Verified Customer</cite>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Very few barbers in West Palm are as good as Trendsetters. Haircuts are always on point, the booking system is easy to use on the go, and the quality never dips."</p>
+        <cite>Verified Customer</cite>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Clean shop, clean cuts, no attitude. Jamie takes real pride in the work — it's why we keep coming back."</p>
+        <cite>Verified Customer</cite>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Nice, clean, and family friendly. My son and I come here for every haircut — great customer service every time."</p>
+        <cite>Verified Customer</cite>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Adrian is the best barber that's ever cut me. Go see him — you won't regret it."</p>
+        <cite>Verified Customer</cite>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"A haircut went wrong on a Friday — by Saturday morning Jay had made it right himself. That's what real customer service looks like."</p>
+        <cite>Verified Customer</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Come By</span>
+      <h2>Visit the Shop</h2>
+    </div>
+    <div class="visit">
+      <div>
+        <div class="contact-line"><span class="mono">Address</span><span>4728 Okeechobee Blvd, West Palm Beach, FL 33417</span></div>
+        <div class="contact-line"><span class="mono">Phone</span><a href="tel:+15616295737">(561) 629-5737</a></div>
+        <table class="hours-table">
+          <tr><td>Monday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr><td>Tuesday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr><td>Wednesday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr><td>Thursday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr class="today"><td>Friday</td><td>9:30 AM – 8:00 PM</td></tr>
+          <tr><td>Saturday</td><td>9:30 AM – 8:00 PM</td></tr>
+          <tr><td>Sunday</td><td>10:00 AM – 4:00 PM</td></tr>
+        </table>
+      </div>
+      <div>
+        <iframe class="map-frame" loading="lazy" src="https://maps.google.com/maps?q=26.7062049,-80.11484329999999&z=15&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready for a cut that holds up?</h2>
+  <p>Call ahead to skip the wait — Jay and the team will get you in the chair.</p>
+  <a class="btn-primary" href="tel:+15616295737">Call (561) 629-5737</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span>Trendsetters Barber Shop Inc. — Est. 2010</span>
+      <span>4728 Okeechobee Blvd, West Palm Beach, FL 33417</span>
+      <span>© 2026 Trendsetters Barber Shop Inc.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
