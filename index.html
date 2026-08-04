@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trendsetters Barber Shop Inc. | West Palm Beach, FL — Est. 2010</title>
 <meta name="description" content="Trendsetters Barber Shop Inc. — West Palm Beach's barbershop since 2010. Haircuts, fades, beard trims & kids cuts on Okeechobee Blvd.">
+<meta name="theme-color" content="#16302A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://lh5.googleusercontent.com">
+<link rel="preload" as="image" href="hero-desktop.webp" media="(min-width: 601px)" fetchpriority="high">
+<link rel="preload" as="image" href="hero-mobile.webp" media="(max-width: 600px)" fetchpriority="high">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400&family=IBM+Plex+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
 <style>
@@ -71,10 +75,11 @@
   .navlinks a{
     font-family:'IBM Plex Mono',monospace; font-size:12px;
     letter-spacing:0.1em; text-transform:uppercase;
-    text-decoration:none; color:var(--sage);
+    text-decoration:none;
     transition:color .2s;
   }
-  .navlinks a:hover{color:var(--brass-bright);}
+  .navlinks a:not(.call-btn){color:var(--sage);}
+  .navlinks a:not(.call-btn):hover{color:var(--brass-bright);}
   .call-btn{
     background:var(--brass); color:var(--forest-deep);
     font-family:'IBM Plex Mono',monospace; font-weight:500;
@@ -82,7 +87,7 @@
     padding:10px 18px; border-radius:2px; text-decoration:none;
     white-space:nowrap;
   }
-  .call-btn:hover{background:var(--brass-bright);}
+  .call-btn:hover{background:var(--brass-bright); color:var(--forest-deep);}
   @media (max-width:820px){ .navlinks a:not(.call-btn){display:none;} }
 
   /* --- Hero --- */
@@ -257,6 +262,94 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;
     font-size:13px; color:var(--sage);
   }
+
+  /* --- Open/Closed status badge --- */
+  .status-badge{
+    display:flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--sage);
+  }
+  .status-badge .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--sage); flex-shrink:0;
+  }
+  .status-badge.open{color:#8FD19E;}
+  .status-badge.open .dot{background:#4CAF6D; box-shadow:0 0 0 3px rgba(76,175,109,0.25);}
+  .status-badge.closed{color:#E39A9A;}
+  .status-badge.closed .dot{background:var(--barber-red); box-shadow:0 0 0 3px rgba(168,50,50,0.2);}
+  @media (max-width:640px){
+    .status-badge span.status-text{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+  }
+
+  /* --- Scroll reveal --- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+
+  /* --- Gallery lightbox --- */
+  .gallery img{cursor:zoom-in;}
+  .lightbox{
+    position:fixed; inset:0; z-index:200; background:rgba(14,31,27,0.94);
+    display:none; align-items:center; justify-content:center; padding:24px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{
+    max-width:min(90vw,900px); max-height:82vh; object-fit:contain;
+    border:1px solid var(--line);
+  }
+  .lightbox-close, .lightbox-prev, .lightbox-next{
+    position:absolute; background:none; border:1px solid var(--line);
+    color:var(--cream); font-family:'IBM Plex Mono',monospace; font-size:20px;
+    cursor:pointer; width:44px; height:44px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transition:border-color .2s, color .2s;
+  }
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover{border-color:var(--brass); color:var(--brass-bright);}
+  .lightbox-close{top:24px; right:24px;}
+  .lightbox-prev{left:16px; top:50%; transform:translateY(-50%);}
+  .lightbox-next{right:16px; top:50%; transform:translateY(-50%);}
+  @media (max-width:640px){ .lightbox-prev, .lightbox-next{width:36px; height:36px; font-size:16px;} }
+
+  /* --- Testimonials carousel --- */
+  .testi-grid{
+    display:block; position:relative; max-width:680px; margin:0 auto;
+  }
+  .testi-card{
+    background:var(--forest-deep); border:1px solid var(--line);
+    padding:32px 28px; flex-direction:column;
+    display:none;
+  }
+  .testi-card.active{display:flex; animation:testi-fade .5s ease;}
+  @keyframes testi-fade{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+  .testi-dots{
+    display:flex; gap:10px; justify-content:center; margin-top:24px;
+  }
+  .testi-dots button{
+    width:8px; height:8px; border-radius:50%; border:none;
+    background:var(--line); cursor:pointer; padding:0;
+    transition:background .2s;
+  }
+  .testi-dots button.active{background:var(--brass-bright);}
+
+  /* --- Sticky mobile call bar --- */
+  .mobile-call-bar{
+    display:none;
+  }
+  @media (max-width:820px){
+    .mobile-call-bar{
+      display:flex; position:fixed; left:0; right:0; bottom:0; z-index:100;
+      background:var(--brass); color:var(--forest-deep);
+      align-items:center; justify-content:center; gap:10px;
+      padding:14px 20px; text-decoration:none;
+      font-family:'IBM Plex Mono',monospace; font-size:13px;
+      letter-spacing:0.08em; text-transform:uppercase; font-weight:500;
+      box-shadow:0 -4px 16px rgba(0,0,0,0.25);
+    }
+    body{padding-bottom:58px;}
+  }
 </style>
 <link rel="canonical" href="https://trendsettersbarbershopfl.com/">
 <meta property="og:type" content="business.business">
@@ -264,8 +357,14 @@
 <meta property="og:description" content="West Palm Beach's barbershop since 2010. Haircuts, fades, beard trims & kids cuts on Okeechobee Blvd.">
 <meta property="og:url" content="https://trendsettersbarbershopfl.com/">
 <meta property="og:image" content="https://trendsettersbarbershopfl.com/hero-fallback.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="682">
+<meta property="og:image:alt" content="Trendsetters Barber Shop interior in West Palm Beach, FL">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trendsetters Barber Shop Inc. | West Palm Beach, FL">
+<meta name="twitter:description" content="West Palm Beach's barbershop since 2010. Haircuts, fades, beard trims & kids cuts on Okeechobee Blvd.">
+<meta name="twitter:image" content="https://trendsettersbarbershopfl.com/hero-fallback.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -313,6 +412,7 @@
       <a href="#barbers">Barbers</a>
       <a href="#reviews">Reviews</a>
       <a href="#visit">Visit</a>
+      <span id="status-badge" class="status-badge" role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span class="status-text">Checking hours…</span></span>
       <a class="call-btn" href="tel:+15616295737">(561) 629-5737</a>
     </div>
   </nav>
@@ -351,12 +451,12 @@
 
 <section id="services">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="mono">What We Do</span>
       <h2>The Menu</h2>
       <p>No frills, no upsell — just clean lines and a shop that knows what it's doing.</p>
     </div>
-    <div class="services">
+    <div class="services reveal">
       <div class="service">
         <span class="num">01</span>
         <div><h3>Men's Haircut</h3><p>Classic and modern cuts, tailored to how you actually wear your hair.</p></div>
@@ -379,12 +479,12 @@
 
 <section id="barbers" style="background:var(--forest-deep)">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="mono">Behind the Chair</span>
       <h2>Meet the Barbers</h2>
       <p>The names customers ask for by name.</p>
     </div>
-    <div class="barbers-grid">
+    <div class="barbers-grid reveal">
       <div class="barber-card">
         <div class="barber-initial">J</div>
         <h3>Dr. Jay</h3>
@@ -426,27 +526,34 @@
 
 <section>
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="mono">The Shop</span>
       <h2>A Look Inside</h2>
     </div>
   </div>
-  <div class="gallery">
-    <img src="https://lh5.googleusercontent.com/p/AF1QipPUZhyXpuphZpqzBZWPkSFlaha7Cl0i8k827J_Q" alt="Inside Trendsetters Barber Shop" loading="lazy" width="410" height="512">
-    <img src="https://lh5.googleusercontent.com/p/AF1QipOSHsYmNeyaNKqgijb7y6GlmjR5YNMNAf3PYqVD" alt="Trendsetters Barber Shop interior" loading="lazy" width="512" height="512">
-    <img src="https://lh5.googleusercontent.com/p/AF1QipOipkzDlpaSEOZI00VIp4k3FHdbV8irCB04XhjT" alt="Trendsetters Barber Shop chairs" loading="lazy" width="512" height="280">
-    <img src="https://lh5.googleusercontent.com/p/AF1QipPtV1oOEUMYT04fyOJItWLawqECDKhCfH3IY22g" alt="Trendsetters Barber Shop detail" loading="lazy" width="384" height="512">
+  <div class="gallery reveal">
+    <img src="https://lh5.googleusercontent.com/p/AF1QipPUZhyXpuphZpqzBZWPkSFlaha7Cl0i8k827J_Q" alt="Inside Trendsetters Barber Shop" loading="lazy" decoding="async" width="410" height="512" data-lightbox-index="0">
+    <img src="https://lh5.googleusercontent.com/p/AF1QipOSHsYmNeyaNKqgijb7y6GlmjR5YNMNAf3PYqVD" alt="Trendsetters Barber Shop interior" loading="lazy" decoding="async" width="512" height="512" data-lightbox-index="1">
+    <img src="https://lh5.googleusercontent.com/p/AF1QipOipkzDlpaSEOZI00VIp4k3FHdbV8irCB04XhjT" alt="Trendsetters Barber Shop chairs" loading="lazy" decoding="async" width="512" height="280" data-lightbox-index="2">
+    <img src="https://lh5.googleusercontent.com/p/AF1QipPtV1oOEUMYT04fyOJItWLawqECDKhCfH3IY22g" alt="Trendsetters Barber Shop detail" loading="lazy" decoding="async" width="384" height="512" data-lightbox-index="3">
   </div>
 </section>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" id="lightbox-next" aria-label="Next image">›</button>
+</div>
+
 <section id="reviews" style="background:var(--forest-deep)">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="mono">Word on the Street</span>
       <h2>What Regulars Say</h2>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card">
+    <div class="testi-grid reveal">
+      <div class="testi-card active">
         <div class="testi-stars">★★★★★</div>
         <p>"Among the best in Palm Beach. Great environment, experienced barbers, and rates that stay reasonable."</p>
         <cite>Verified Customer</cite>
@@ -476,17 +583,18 @@
         <p>"A haircut went wrong on a Friday — by Saturday morning Jay had made it right himself. That's what real customer service looks like."</p>
         <cite>Verified Customer</cite>
       </div>
+      <div class="testi-dots" id="testi-dots"></div>
     </div>
   </div>
 </section>
 
 <section id="visit">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="mono">Come By</span>
       <h2>Visit the Shop</h2>
     </div>
-    <div class="visit">
+    <div class="visit reveal">
       <div>
         <div class="contact-line"><span class="mono">Address</span><span>4728 Okeechobee Blvd, West Palm Beach, FL 33417</span></div>
         <div class="contact-line"><span class="mono">Phone</span><a href="tel:+15616295737">(561) 629-5737</a></div>
@@ -501,7 +609,7 @@
         </table>
       </div>
       <div>
-        <iframe class="map-frame" loading="lazy" src="https://maps.google.com/maps?q=26.7062049,-80.11484329999999&z=15&output=embed"></iframe>
+        <iframe class="map-frame" loading="lazy" title="Map showing Trendsetters Barber Shop location at 4728 Okeechobee Blvd, West Palm Beach, FL" src="https://maps.google.com/maps?q=26.7062049,-80.11484329999999&z=15&output=embed"></iframe>
       </div>
     </div>
   </div>
@@ -522,6 +630,134 @@
     </div>
   </div>
 </footer>
+
+<a class="mobile-call-bar" href="tel:+15616295737">📞 Call Now — (561) 629-5737</a>
+
+<script>
+(function(){
+
+  /* ---------- Open / Closed status badge ---------- */
+  var HOURS = {
+    0: [10*60, 18*60],        // Sunday
+    1: [10*60, 20*60],        // Monday
+    2: [10*60, 20*60],        // Tuesday
+    3: [10*60, 20*60],        // Wednesday
+    4: [10*60, 20*60],        // Thursday
+    5: [9*60+30, 20*60],      // Friday
+    6: [9*60+30, 20*60]       // Saturday
+  };
+  function updateStatusBadge(){
+    var badge = document.getElementById('status-badge');
+    if(!badge) return;
+    var now = new Date(new Date().toLocaleString('en-US', {timeZone:'America/New_York'}));
+    var day = now.getDay();
+    var mins = now.getHours()*60 + now.getMinutes();
+    var todays = HOURS[day];
+    var isOpen = mins >= todays[0] && mins < todays[1];
+    var textEl = badge.querySelector('.status-text');
+    badge.classList.remove('open','closed');
+    if(isOpen){
+      badge.classList.add('open');
+      var closeH = Math.floor(todays[1]/60), closeM = todays[1]%60;
+      var closeLabel = ((closeH%12===0)?12:closeH%12)+(closeM?':'+String(closeM).padStart(2,'0'):'')+(closeH>=12?'PM':'AM');
+      textEl.textContent = 'Open Now · Closes ' + closeLabel;
+    } else {
+      badge.classList.add('closed');
+      var opensToday = mins < todays[0];
+      var openH, openM, label;
+      if(opensToday){
+        openH = Math.floor(todays[0]/60); openM = todays[0]%60;
+        label = 'Closed · Opens ' + ((openH%12===0)?12:openH%12)+(openM?':'+String(openM).padStart(2,'0'):'')+(openH>=12?'PM':'AM');
+      } else {
+        var tomorrow = HOURS[(day+1)%7];
+        openH = Math.floor(tomorrow[0]/60); openM = tomorrow[0]%60;
+        label = 'Closed · Opens Tomorrow ' + ((openH%12===0)?12:openH%12)+(openM?':'+String(openM).padStart(2,'0'):'')+(openH>=12?'PM':'AM');
+      }
+      textEl.textContent = label;
+    }
+  }
+  updateStatusBadge();
+  setInterval(updateStatusBadge, 60000);
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* ---------- Gallery lightbox ---------- */
+  var galleryImgs = Array.prototype.slice.call(document.querySelectorAll('.gallery img'));
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lbIndex = 0;
+  function openLightbox(i){
+    lbIndex = i;
+    lightboxImg.src = galleryImgs[i].src;
+    lightboxImg.alt = galleryImgs[i].alt;
+    lightbox.classList.add('open');
+  }
+  function closeLightbox(){ lightbox.classList.remove('open'); }
+  function showRelative(delta){
+    lbIndex = (lbIndex + delta + galleryImgs.length) % galleryImgs.length;
+    lightboxImg.src = galleryImgs[lbIndex].src;
+    lightboxImg.alt = galleryImgs[lbIndex].alt;
+  }
+  galleryImgs.forEach(function(img, i){
+    img.addEventListener('click', function(){ openLightbox(i); });
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-prev').addEventListener('click', function(){ showRelative(-1); });
+  document.getElementById('lightbox-next').addEventListener('click', function(){ showRelative(1); });
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e){
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft') showRelative(-1);
+    if(e.key === 'ArrowRight') showRelative(1);
+  });
+
+  /* ---------- Testimonials carousel ---------- */
+  var testiCards = Array.prototype.slice.call(document.querySelectorAll('.testi-card'));
+  var dotsWrap = document.getElementById('testi-dots');
+  var testiIndex = 0;
+  var testiTimer;
+  testiCards.forEach(function(card, i){
+    var dot = document.createElement('button');
+    if(i === 0) dot.classList.add('active');
+    dot.setAttribute('aria-label', 'Show review ' + (i+1));
+    dot.addEventListener('click', function(){ goToTesti(i); resetTestiTimer(); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('button'));
+  function goToTesti(i){
+    testiCards[testiIndex].classList.remove('active');
+    dots[testiIndex].classList.remove('active');
+    testiIndex = i;
+    testiCards[testiIndex].classList.add('active');
+    dots[testiIndex].classList.add('active');
+  }
+  function nextTesti(){ goToTesti((testiIndex + 1) % testiCards.length); }
+  function resetTestiTimer(){
+    clearInterval(testiTimer);
+    testiTimer = setInterval(nextTesti, 6000);
+  }
+  resetTestiTimer();
+  var testiGrid = document.querySelector('.testi-grid');
+  testiGrid.addEventListener('mouseenter', function(){ clearInterval(testiTimer); });
+  testiGrid.addEventListener('mouseleave', resetTestiTimer);
+
+})();
+</script>
 
 </body>
 </html>
