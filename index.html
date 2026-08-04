@@ -262,6 +262,8 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;
     font-size:13px; color:var(--sage);
   }
+  .foot-row a{text-decoration:none; transition:color .2s;}
+  .foot-row a:hover{color:var(--brass-bright);}
 
   /* --- Open/Closed status badge --- */
   .status-badge{
@@ -384,18 +386,13 @@
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
       "opens": "10:00",
       "closes": "20:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Sunday"],
-      "opens": "10:00",
-      "closes": "18:00"
     }
   ],
-  "priceRange": "$$"
+  "priceRange": "$$",
+  "sameAs": ["https://www.instagram.com/trendsettersbarbershop561/"]
 }
 </script>
 
@@ -598,14 +595,14 @@
       <div>
         <div class="contact-line"><span class="mono">Address</span><span>4728 Okeechobee Blvd, West Palm Beach, FL 33417</span></div>
         <div class="contact-line"><span class="mono">Phone</span><a href="tel:+15616295737">(561) 629-5737</a></div>
-        <table class="hours-table">
-          <tr><td>Monday</td><td>10:00 AM – 8:00 PM</td></tr>
-          <tr><td>Tuesday</td><td>10:00 AM – 8:00 PM</td></tr>
-          <tr><td>Wednesday</td><td>10:00 AM – 8:00 PM</td></tr>
-          <tr><td>Thursday</td><td>10:00 AM – 8:00 PM</td></tr>
-          <tr class="today"><td>Friday</td><td>9:30 AM – 8:00 PM</td></tr>
-          <tr><td>Saturday</td><td>9:30 AM – 8:00 PM</td></tr>
-          <tr><td>Sunday</td><td>10:00 AM – 6:00 PM</td></tr>
+        <table class="hours-table" id="hours-table">
+          <tr data-day="1"><td>Monday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr data-day="2"><td>Tuesday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr data-day="3"><td>Wednesday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr data-day="4"><td>Thursday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr data-day="5"><td>Friday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr data-day="6"><td>Saturday</td><td>10:00 AM – 8:00 PM</td></tr>
+          <tr data-day="0"><td>Sunday</td><td>10:00 AM – 8:00 PM</td></tr>
         </table>
       </div>
       <div>
@@ -626,6 +623,7 @@
     <div class="foot-row">
       <span>Trendsetters Barber Shop Inc. — Est. 2010</span>
       <span>4728 Okeechobee Blvd, West Palm Beach, FL 33417</span>
+      <a href="https://www.instagram.com/trendsettersbarbershop561/" target="_blank" rel="noopener">Instagram @trendsettersbarbershop561</a>
       <span>© 2026 Trendsetters Barber Shop Inc.</span>
     </div>
   </div>
@@ -638,13 +636,13 @@
 
   /* ---------- Open / Closed status badge ---------- */
   var HOURS = {
-    0: [10*60, 18*60],        // Sunday
-    1: [10*60, 20*60],        // Monday
-    2: [10*60, 20*60],        // Tuesday
-    3: [10*60, 20*60],        // Wednesday
-    4: [10*60, 20*60],        // Thursday
-    5: [9*60+30, 20*60],      // Friday
-    6: [9*60+30, 20*60]       // Saturday
+    0: [10*60, 20*60], // Sunday
+    1: [10*60, 20*60], // Monday
+    2: [10*60, 20*60], // Tuesday
+    3: [10*60, 20*60], // Wednesday
+    4: [10*60, 20*60], // Thursday
+    5: [10*60, 20*60], // Friday
+    6: [10*60, 20*60]  // Saturday
   };
   function updateStatusBadge(){
     var badge = document.getElementById('status-badge');
@@ -678,6 +676,16 @@
   }
   updateStatusBadge();
   setInterval(updateStatusBadge, 60000);
+
+  /* ---------- Highlight today's row in the hours table ---------- */
+  (function(){
+    var table = document.getElementById('hours-table');
+    if(!table) return;
+    var now = new Date(new Date().toLocaleString('en-US', {timeZone:'America/New_York'}));
+    var todayNum = String(now.getDay());
+    var row = table.querySelector('tr[data-day="' + todayNum + '"]');
+    if(row) row.classList.add('today');
+  })();
 
   /* ---------- Scroll reveal ---------- */
   var revealEls = document.querySelectorAll('.reveal');
